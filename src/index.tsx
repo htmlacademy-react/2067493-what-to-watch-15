@@ -1,5 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import App from './components/app/app';
+import { TypePromoMovie } from './type';
+
+const promoMovie: TypePromoMovie = {
+  name: 'The Grand Budapest Hotel',
+  genre: 'Drama',
+  data: 2024
+};
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -7,6 +15,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <h1>Hello, World!</h1>
+    <App promoMovie={promoMovie}/>
   </React.StrictMode>
 );
