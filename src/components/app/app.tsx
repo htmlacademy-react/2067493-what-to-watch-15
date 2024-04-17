@@ -1,7 +1,12 @@
 import MainPage from '../main-page/main-page';
+import { TypePromoMovie } from '../../type';
 
-export default function App(): JSX.Element {
+type TypeAppProps = {
+  promoMovie: TypePromoMovie;
+}
+
+export default function App(props: TypeAppProps): JSX.Element {
   return (
-    <MainPage/>
+    <MainPage promoMovie={props.promoMovie}/>
   );
 }
