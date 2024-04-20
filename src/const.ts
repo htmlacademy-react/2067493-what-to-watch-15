@@ -9,4 +9,9 @@ export enum Addresses {
   Player = '/player/:id'
 }
 
+export enum AutorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+}
+
 export const movies: TypeMovie[] = Array.from({length:8}, (_, index) => ({id: String(index + 1)}));
