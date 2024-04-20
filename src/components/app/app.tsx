@@ -20,7 +20,7 @@ export default function App(props: TypeAppProps): JSX.Element {
       <Routes>
         <Route path={Addresses.Main} element={<MainPage promoMovie={props.promoMovie} movies={props.movies}/>}/>
         <Route path={Addresses.SignIn} element={<SingnInPage/>}/>
-        <Route path={Addresses.MyList} element={<MyListPage/>}/>
+        <Route path={Addresses.MyList} element={<MyListPage movies={props.movies}/>}/>
         <Route path={Addresses.Film}>
           <Route path=':id' element={<MoviePage promoMovie={props.promoMovie} movies={props.movies}/>}>
           </Route>
