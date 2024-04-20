@@ -1,4 +1,4 @@
-import MovieCard from './movie-card';
+import MovieCard from '../movie-card/movie-card';
 import PromoMovieCard from './promo-movie-card';
 import { TypePromoMovie, TypeMovie } from '../../type';
 import { Addresses } from '../../const';

@@ -1,14 +1,17 @@
-import { TypeMovie, Addresses } from '../../const';
+import { Addresses } from '../../const';
+import { TypeMovie, TypePromoMovie } from '../../type';
 import { useParams, Link } from 'react-router-dom';
+import MovieCard from '../movie-card/movie-card';
 import Page404 from '../page404/page404';
 
 type TypePropsMoviePage = {
+  promoMovie: TypePromoMovie;
   movies: TypeMovie[];
 }
 
-export default function MoviePage({ movies }: TypePropsMoviePage): JSX.Element {
+export default function MoviePage({ movies, promoMovie }: TypePropsMoviePage): JSX.Element {
   const params = useParams();
-  const movie = movies.find((movieItem) => movieItem.id === params.id);
+  const movie = params.id === promoMovie.id ? promoMovie : movies.find((movieItem) => movieItem.id === params.id);
   return (
     movie ?
       <>
@@ -50,12 +53,12 @@ export default function MoviePage({ movies }: TypePropsMoviePage): JSX.Element {
                 </p>
 
                 <div className="film-card__buttons">
-                  <button className="btn btn--play film-card__button" type="button">
+                  <Link to={`/player/${movie.id}`} className="btn btn--play film-card__button" type="button">
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s"></use>
                     </svg>
                     <span>Play</span>
-                  </button>
+                  </Link>
                   <button className="btn btn--list film-card__button" type="button">
                     <svg viewBox="0 0 19 20" width="19" height="20">
                       <use xlinkHref="#add"></use>
@@ -63,7 +66,7 @@ export default function MoviePage({ movies }: TypePropsMoviePage): JSX.Element {
                     <span>My list</span>
                     <span className="film-card__count">9</span>
                   </button>
-                  <a href="add-review.html" className="btn film-card__button">Add review</a>
+                  <Link to={`/films/${movie.id}/review`} className="btn film-card__button">Add review</Link>
                 </div>
               </div>
             </div>
@@ -117,51 +120,19 @@ export default function MoviePage({ movies }: TypePropsMoviePage): JSX.Element {
             <h2 className="catalog__title">More like this</h2>
 
             <div className="catalog__films-list">
-              <article className="small-film-card catalog__films-card">
-                <div className="small-film-card__image">
-                  <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-                </div>
-                <h3 className="small-film-card__title">
-                  <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-                </h3>
-              </article>
-
-              <article className="small-film-card catalog__films-card">
-                <div className="small-film-card__image">
-                  <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-                </div>
-                <h3 className="small-film-card__title">
-                  <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
-                </h3>
-              </article>
-
-              <article className="small-film-card catalog__films-card">
-                <div className="small-film-card__image">
-                  <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-                </div>
-                <h3 className="small-film-card__title">
-                  <a className="small-film-card__link" href="film-page.html">Macbeth</a>
-                </h3>
-              </article>
-
-              <article className="small-film-card catalog__films-card">
-                <div className="small-film-card__image">
-                  <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-                </div>
-                <h3 className="small-film-card__title">
-                  <a className="small-film-card__link" href="film-page.html">Aviator</a>
-                </h3>
-              </article>
+              {movies.filter((moviesItem) => moviesItem.id !== movie.id)
+                .slice(0, 4)
+                .map((item) => <MovieCard key= {item.id} movie={item}/>)}
             </div>
           </section>
 
           <footer className="page-footer">
             <div className="logo">
-              <a href="main.html" className="logo__link logo__link--light">
+              <Link to={Addresses.Main} className="logo__link logo__link--light">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <div className="copyright">

@@ -22,10 +22,11 @@ export default function App(props: TypeAppProps): JSX.Element {
         <Route path={Addresses.SignIn} element={<SingnInPage/>}/>
         <Route path={Addresses.MyList} element={<MyListPage/>}/>
         <Route path={Addresses.Film}>
-          <Route path=':id' element={<MoviePage movies={props.movies}/>}>
+          <Route path=':id' element={<MoviePage promoMovie={props.promoMovie} movies={props.movies}/>}>
           </Route>
         </Route>
         <Route path={Addresses.Player} element={<PlayerPage/>} />
+        <Route path={Addresses.AddReview} element={<AddReviewPage/>}/>
         <Route path='*' element={<Page404/>}/>
       </Routes>
     </BrowserRouter>

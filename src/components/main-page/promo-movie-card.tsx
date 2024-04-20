@@ -8,11 +8,12 @@ type TypePropsPromoMovie = {
 
 export default function PromoMovieCard({ promoMovie }: TypePropsPromoMovie): JSX.Element {
   const playMovieLink = `/player/${promoMovie.id}`;
+  const moviePageLink = `/films/${promoMovie.id}`;
   return (
     <div className="film-card__wrap">
       <div className="film-card__info">
         <div className="film-card__poster">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <Link to={moviePageLink}><img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" /></Link>
         </div>
 
         <div className="film-card__desc">
