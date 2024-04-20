@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { TypePromoMovie } from '../../type';
 
 type TypePropsPromoMovie = {
@@ -5,7 +6,8 @@ type TypePropsPromoMovie = {
 }
 
 
-export default function PromoMovieCard({promoMovie}: TypePropsPromoMovie): JSX.Element {
+export default function PromoMovieCard({ promoMovie }: TypePropsPromoMovie): JSX.Element {
+  const playMovieLink = `/player/${promoMovie.id}`;
   return (
     <div className="film-card__wrap">
       <div className="film-card__info">
@@ -21,12 +23,12 @@ export default function PromoMovieCard({promoMovie}: TypePropsPromoMovie): JSX.E
           </p>
 
           <div className="film-card__buttons">
-            <button className="btn btn--play film-card__button" type="button">
+            <Link to={playMovieLink} className="btn btn--play film-card__button" type="button">
               <svg viewBox="0 0 19 19" width="19" height="19">
                 <use xlinkHref="#play-s"></use>
               </svg>
               <span>Play</span>
-            </button>
+            </Link>
             <button className="btn btn--list film-card__button" type="button">
               <svg viewBox="0 0 19 20" width="19" height="20">
                 <use xlinkHref="#add"></use>
@@ -37,6 +39,6 @@ export default function PromoMovieCard({promoMovie}: TypePropsPromoMovie): JSX.E
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }

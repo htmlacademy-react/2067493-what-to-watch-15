@@ -1,12 +1,15 @@
 import MovieCard from './movie-card';
 import PromoMovieCard from './promo-movie-card';
-import { TypePromoMovie } from '../../type';
+import { TypePromoMovie, TypeMovie } from '../../type';
+import { Addresses } from '../../const';
+import { Link } from 'react-router-dom';
 
 type TypePropsMainPage = {
   promoMovie: TypePromoMovie;
+  movies: TypeMovie[];
 }
 
-export default function MainPage({promoMovie}: TypePropsMainPage): JSX.Element {
+export default function MainPage({promoMovie, movies}: TypePropsMainPage): JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -18,21 +21,21 @@ export default function MainPage({promoMovie}: TypePropsMainPage): JSX.Element {
 
         <header className="page-header film-card__head">
           <div className="logo">
-            <a className="logo__link">
+            <Link to={Addresses.Main} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <ul className="user-block">
             <li className="user-block__item">
               <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                <Link to={Addresses.MyList}><img src="img/avatar.jpg" alt="User avatar" width="63" height="63" /></Link>
               </div>
             </li>
             <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
+              <Link to={Addresses.SignIn} className="user-block__link">Sign out</Link>
             </li>
           </ul>
         </header>
@@ -78,26 +81,7 @@ export default function MainPage({promoMovie}: TypePropsMainPage): JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
+            {movies.map((item) => <MovieCard key={item.id} movie={item}/>)}
             <div className="catalog__more">
               <button className="catalog__button" type="button">Show more</button>
             </div>
@@ -106,11 +90,11 @@ export default function MainPage({promoMovie}: TypePropsMainPage): JSX.Element {
 
         <footer className="page-footer">
           <div className="logo">
-            <a className="logo__link logo__link--light">
+            <Link to={Addresses.Main} className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
