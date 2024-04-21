@@ -4,6 +4,4 @@ export type TypePromoMovie = {
   genre: string;
   data: number;
 };
-export type TypeMovie = {
-  id: string;
-}
+

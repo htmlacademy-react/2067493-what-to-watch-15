@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { TypePromoMovie } from './type';
-import { movies } from './const';
+import { moviesCards, moviesPage } from './mocks/films';
 
 const promoMovie: TypePromoMovie = {
   id: '0',
@@ -17,6 +17,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App promoMovie={promoMovie} movies={movies}/>
+    <App promoMovie={promoMovie} movies={moviesCards}/>
   </React.StrictMode>
 );

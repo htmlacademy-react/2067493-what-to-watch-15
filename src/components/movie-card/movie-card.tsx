@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { TypeMovie } from '../../type';
+import { TypeMovieCard } from '../../mocks/type-mocks';
 
 type TypePropsMovieCard = {
-  movie: TypeMovie;
+  movie: TypeMovieCard;
 }
 export default function MovieCard({ movie }: TypePropsMovieCard): JSX.Element {
   const movieLink = `/films/${movie.id}`;
@@ -10,11 +10,11 @@ export default function MovieCard({ movie }: TypePropsMovieCard): JSX.Element {
     <article className="small-film-card catalog__films-card">
       <Link to={movieLink}>
         <div className="small-film-card__image">
-          <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
+          <img src={movie.previewImage} alt={movie.name} width="280" height="175" />
         </div>
       </Link>
       <h3 className="small-film-card__title">
-        <Link to={movieLink} className="small-film-card__link" >Fantastic Beasts: The Crimes of Grindelwald</Link>
+        <Link to={movieLink} className="small-film-card__link" >{movie.name}</Link>
       </h3>
     </article>
   );

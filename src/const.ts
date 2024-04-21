@@ -1,5 +1,3 @@
-import { TypeMovie } from './type';
-
 export enum Addresses {
   Main = '/',
   SignIn = '/login',
@@ -14,4 +12,3 @@ export enum AutorizationStatus {
   NoAuth = 'NO_AUTH',
 }
 
-export const movies: TypeMovie[] = Array.from({length:8}, (_, index) => ({id: String(index + 1)}));

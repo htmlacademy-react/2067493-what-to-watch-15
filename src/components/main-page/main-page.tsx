@@ -1,12 +1,13 @@
 import MovieCard from '../movie-card/movie-card';
 import PromoMovieCard from './promo-movie-card';
-import { TypePromoMovie, TypeMovie } from '../../type';
+import { TypePromoMovie } from '../../type';
 import { Addresses } from '../../const';
 import { Link } from 'react-router-dom';
+import { TypeMoviesCards } from '../../mocks/type-mocks';
 
 type TypePropsMainPage = {
   promoMovie: TypePromoMovie;
-  movies: TypeMovie[];
+  movies: TypeMoviesCards;
 }
 
 export default function MainPage({promoMovie, movies}: TypePropsMainPage): JSX.Element {

@@ -3,7 +3,7 @@ import { ACTORS, NAME_MOVIES, GENRE, VIDEOS, IMAGES, DESCRIPTION } from './const
 import { getRandomInteger, getRandomArrayElement, getRandomSliceArray } from './utils-mocks';
 
 export const moviesPage: TypeMoviesPage = Array.from({length:8}, (_, index): TypeMoviePage => ({
-  id: String(index),
+  id: String(index + 1),
   name: getRandomArrayElement(NAME_MOVIES),
   posterImage: getRandomArrayElement(IMAGES),
   backgroundImage: getRandomArrayElement(IMAGES),

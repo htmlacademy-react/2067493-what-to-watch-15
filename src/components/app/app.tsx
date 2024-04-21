@@ -8,11 +8,12 @@ import Page404 from '../page404/page404';
 import PrivateRoute from '../private-route/private.route';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Addresses, AutorizationStatus } from '../../const';
-import { TypePromoMovie, TypeMovie } from '../../type';
+import { TypePromoMovie } from '../../type';
+import { TypeMoviesCards } from '../../mocks/type-mocks';
 
 type TypeAppProps = {
   promoMovie: TypePromoMovie;
-  movies: TypeMovie[];
+  movies: TypeMoviesCards;
 
 }
 
