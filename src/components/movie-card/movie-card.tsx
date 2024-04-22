@@ -3,11 +3,19 @@ import { TypeMovieCard } from '../../mocks/type-mocks';
 
 type TypePropsMovieCard = {
   movie: TypeMovieCard;
+  onMouseOverCapture: (value: TypeMovieCard) => void;
+  onMouseOutCapture: () => void;
 }
-export default function MovieCard({ movie }: TypePropsMovieCard): JSX.Element {
+export default function MovieCard({ movie, onMouseOverCapture, onMouseOutCapture}: TypePropsMovieCard): JSX.Element {
   const movieLink = `/films/${movie.id}`;
   return (
-    <article className="small-film-card catalog__films-card">
+    <article
+      onMouseOverCapture={() => {
+        onMouseOverCapture(movie);
+      }}
+      onMouseOutCapture={onMouseOutCapture}
+      className="small-film-card catalog__films-card"
+    >
       <Link to={movieLink}>
         <div className="small-film-card__image">
           <img src={movie.previewImage} alt={movie.name} width="280" height="175" />

@@ -1,4 +1,4 @@
-import MovieCard from '../movie-card/movie-card';
+import ListMovies from '../list-movies/list-movies';
 import PromoMovieCard from './promo-movie-card';
 import { TypePromoMovie } from '../../type';
 import { Addresses } from '../../const';
@@ -81,12 +81,7 @@ export default function MainPage({promoMovie, movies}: TypePropsMainPage): JSX.E
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            {movies.map((item) => <MovieCard key={item.id} movie={item}/>)}
-            <div className="catalog__more">
-              <button className="catalog__button" type="button">Show more</button>
-            </div>
-          </div>
+          <ListMovies movies={movies}/>
         </section>
 
         <footer className="page-footer">
