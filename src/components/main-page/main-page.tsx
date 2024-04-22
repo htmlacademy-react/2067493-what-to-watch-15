@@ -1,12 +1,11 @@
 import ListMovies from '../list-movies/list-movies';
 import PromoMovieCard from './promo-movie-card';
-import { TypePromoMovie } from '../../type';
 import { Addresses } from '../../const';
 import { Link } from 'react-router-dom';
-import { TypeMoviesCards } from '../../mocks/type-mocks';
+import { TypeMoviesCards, TypeMoviePage } from '../../mocks/type-mocks';
 
 type TypePropsMainPage = {
-  promoMovie: TypePromoMovie;
+  promoMovie: TypeMoviePage;
   movies: TypeMoviesCards;
 }
 

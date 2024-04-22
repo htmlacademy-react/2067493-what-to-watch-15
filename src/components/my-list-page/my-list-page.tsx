@@ -1,11 +1,11 @@
 import { Addresses } from '../../const';
-import { TypeMovie } from '../../type';
+import { TypeMoviesCards } from '../../mocks/type-mocks';
 import { Link } from 'react-router-dom';
-import MovieCard from '../movie-card/movie-card';
+import ListMovies from '../list-movies/list-movies';
 type TypePropsMyListPage = {
-  movies: TypeMovie[];
+  moviesFavorite: TypeMoviesCards ;
 }
-export default function MyListPage ({movies}: TypePropsMyListPage): JSX.Element {
+export default function MyListPage ({moviesFavorite}: TypePropsMyListPage): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -34,7 +34,7 @@ export default function MyListPage ({movies}: TypePropsMyListPage): JSX.Element 
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
-          {movies.slice(0,3).map((item) => <MovieCard key={item.id} movie={item}/>)}
+          <ListMovies movies={moviesFavorite}/>
         </div>
       </section>
 

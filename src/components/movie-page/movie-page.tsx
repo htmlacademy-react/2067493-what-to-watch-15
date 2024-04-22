@@ -1,17 +1,38 @@
 import { Addresses } from '../../const';
-import { TypeMovie, TypePromoMovie } from '../../type';
+import { TypeMoviesPage, TypeMoviePage, TypeMoviesCards } from '../../mocks/type-mocks';
 import { useParams, Link } from 'react-router-dom';
-import MovieCard from '../movie-card/movie-card';
 import Page404 from '../page404/page404';
+import ListMovies from '../list-movies/list-movies';
 
 type TypePropsMoviePage = {
-  promoMovie: TypePromoMovie;
-  movies: TypeMovie[];
+  promoMovie: TypeMoviePage;
+  moviesPage: TypeMoviesPage;
+  moviesCards: TypeMoviesCards;
 }
 
-export default function MoviePage({ movies, promoMovie }: TypePropsMoviePage): JSX.Element {
+export default function MoviePage({ moviesPage, promoMovie, moviesCards }: TypePropsMoviePage): JSX.Element {
   const params = useParams();
-  const movie = params.id === promoMovie.id ? promoMovie : movies.find((movieItem) => movieItem.id === params.id);
+  const movie = params.id === promoMovie.id ? promoMovie : moviesPage.find((movieItem) => movieItem.id === params.id);
+  const isFavorite: number = moviesPage.filter((item) => item.isFavorite).length;
+
+  const getMovieScore = (rating: number): string => {
+    if (rating > 3) {
+      if(rating < 5) {
+        return 'Normal';
+      }
+      if(rating < 8) {
+        return 'Good';
+      }
+      if (rating < 10) {
+        return 'Very Good';
+      }
+      if (rating === 10) {
+        return 'Awasome';
+      }
+    }
+    return 'Bad';
+  };
+
   return (
     movie ?
       <>
@@ -46,10 +67,10 @@ export default function MoviePage({ movies, promoMovie }: TypePropsMoviePage): J
 
             <div className="film-card__wrap">
               <div className="film-card__desc">
-                <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+                <h2 className="film-card__title">{movie.name}</h2>
                 <p className="film-card__meta">
-                  <span className="film-card__genre">Drama</span>
-                  <span className="film-card__year">2014</span>
+                  <span className="film-card__genre">{movie.genre}</span>
+                  <span className="film-card__year">{movie.released}</span>
                 </p>
 
                 <div className="film-card__buttons">
@@ -64,7 +85,7 @@ export default function MoviePage({ movies, promoMovie }: TypePropsMoviePage): J
                       <use xlinkHref="#add"></use>
                     </svg>
                     <span>My list</span>
-                    <span className="film-card__count">9</span>
+                    <span className="film-card__count">{isFavorite}</span>
                   </button>
                   <Link to={`/films/${movie.id}/review`} className="btn film-card__button">Add review</Link>
                 </div>
@@ -94,21 +115,19 @@ export default function MoviePage({ movies, promoMovie }: TypePropsMoviePage): J
                 </nav>
 
                 <div className="film-rating">
-                  <div className="film-rating__score">8,9</div>
+                  <div className="film-rating__score">{movie.rating}</div>
                   <p className="film-rating__meta">
-                    <span className="film-rating__level">Very good</span>
-                    <span className="film-rating__count">240 ratings</span>
+                    <span className="film-rating__level">{getMovieScore(movie.rating)}</span>
+                    <span className="film-rating__count">{movie.scoresCount} ratings</span>
                   </p>
                 </div>
 
                 <div className="film-card__text">
-                  <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.</p>
+                  <p>{movie.description}</p>
 
-                  <p>Gustave prides himself on providing first-class service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
+                  <p className="film-card__director"><strong>Director: {movie.director}</strong></p>
 
-                  <p className="film-card__director"><strong>Director: Wes Anderson</strong></p>
-
-                  <p className="film-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other</strong></p>
+                  <p className="film-card__starring"><strong>Starring: {movie.starring.join(', ')}</strong></p>
                 </div>
               </div>
             </div>
@@ -120,9 +139,7 @@ export default function MoviePage({ movies, promoMovie }: TypePropsMoviePage): J
             <h2 className="catalog__title">More like this</h2>
 
             <div className="catalog__films-list">
-              {movies.filter((moviesItem) => moviesItem.id !== movie.id)
-                .slice(0, 4)
-                .map((item) => <MovieCard key= {item.id} movie={item}/>)}
+              {<ListMovies movies={moviesCards.filter((item) => item.genre === movie.genre && item.id !== movie.id).slice(0, 4)}/>}
             </div>
           </section>
 

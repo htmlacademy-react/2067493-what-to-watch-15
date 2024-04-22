@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { TypePromoMovie } from '../../type';
+import { TypeMoviePage } from '../../mocks/type-mocks';
 
 type TypePropsPromoMovie = {
-  promoMovie: TypePromoMovie;
+  promoMovie: TypeMoviePage;
 }
 
 
@@ -20,7 +20,7 @@ export default function PromoMovieCard({ promoMovie }: TypePropsPromoMovie): JSX
           <h2 className="film-card__title">{promoMovie.name}</h2>
           <p className="film-card__meta">
             <span className="film-card__genre">{promoMovie.genre}</span>
-            <span className="film-card__year">{promoMovie.data}</span>
+            <span className="film-card__year">{promoMovie.released}</span>
           </p>
 
           <div className="film-card__buttons">

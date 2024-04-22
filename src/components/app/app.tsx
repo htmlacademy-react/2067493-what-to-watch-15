@@ -8,13 +8,13 @@ import Page404 from '../page404/page404';
 import PrivateRoute from '../private-route/private.route';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Addresses, AutorizationStatus } from '../../const';
-import { TypePromoMovie } from '../../type';
-import { TypeMoviesCards } from '../../mocks/type-mocks';
+import { TypeMoviesCards, TypeMoviesPage, TypeMoviePage } from '../../mocks/type-mocks';
 
 type TypeAppProps = {
-  promoMovie: TypePromoMovie;
+  promoMovie: TypeMoviePage;
   movies: TypeMoviesCards;
-
+  moviesFavorite:TypeMoviesCards;
+  moviesPage: TypeMoviesPage;
 }
 
 export default function App(props: TypeAppProps): JSX.Element {
@@ -25,19 +25,19 @@ export default function App(props: TypeAppProps): JSX.Element {
         <Route path={Addresses.SignIn} element={<SingnInPage />} />
         <Route path={Addresses.MyList}
           element={
-            <PrivateRoute autorizationStatus={AutorizationStatus.NoAuth}>
-              <MyListPage movies={props.movies} />
+            <PrivateRoute autorizationStatus={AutorizationStatus.Auth}>
+              <MyListPage moviesFavorite={props.moviesFavorite} />
             </PrivateRoute>
           }
         />
         <Route path={Addresses.Film}>
-          <Route path=':id' element={<MoviePage promoMovie={props.promoMovie} movies={props.movies} />}>
+          <Route path=':id' element={<MoviePage promoMovie={props.promoMovie} moviesPage={props.moviesPage} moviesCards={props.movies} />}>
           </Route>
         </Route>
         <Route path={Addresses.Player} element={<PlayerPage />} />
         <Route path={Addresses.AddReview}
           element={
-            <PrivateRoute autorizationStatus={AutorizationStatus.NoAuth}>
+            <PrivateRoute autorizationStatus={AutorizationStatus.Auth}>
               <AddReviewPage />
             </PrivateRoute>
           }
