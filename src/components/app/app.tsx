@@ -9,6 +9,7 @@ import PrivateRoute from '../private-route/private.route';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Addresses, AutorizationStatus } from '../../const';
 import { TypeMoviesCards, TypeMoviesPage, TypeMoviePage } from '../../mocks/type-mocks';
+import { moviesPage } from '../../mocks/films';
 
 type TypeAppProps = {
   promoMovie: TypeMoviePage;
@@ -34,11 +35,11 @@ export default function App(props: TypeAppProps): JSX.Element {
           <Route path=':id' element={<MoviePage promoMovie={props.promoMovie} moviesPage={props.moviesPage} moviesCards={props.movies} />}>
           </Route>
         </Route>
-        <Route path={Addresses.Player} element={<PlayerPage />} />
+        <Route path={Addresses.Player} element={<PlayerPage promoMovie={props.promoMovie} moviesPage={moviesPage}/>} />
         <Route path={Addresses.AddReview}
           element={
             <PrivateRoute autorizationStatus={AutorizationStatus.Auth}>
-              <AddReviewPage />
+              <AddReviewPage movies={moviesPage}/>
             </PrivateRoute>
           }
         />
