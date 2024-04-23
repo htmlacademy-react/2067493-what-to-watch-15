@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import RatingAddReview from './rating-add-review';
 
 export default function FormAddReview(): JSX.Element {
   const [state, setState] = useState({
@@ -6,89 +7,20 @@ export default function FormAddReview(): JSX.Element {
     rating: 8
   });
 
+  const handleOnChangeRating = (rating: string): void => {
+    setState({
+      ...state,
+      rating: Number(rating)
+    });
+  };
+
   return (
     <form action="#" className="add-review__form">
       <div className="rating">
         <div className="rating__stars">
-          <input className="rating__input" id="star-10" type="radio" name="rating" value="10" checked={state.rating === 10} onChange={(evt) =>
-            setState({
-              ...state,
-              rating: Number(evt.target.value)
-            })}
-          />
-          <label className="rating__label" htmlFor="star-10">Rating 10</label>
-
-          <input className="rating__input" id="star-9" type="radio" name="rating" value="9" checked={state.rating === 9} onChange={(evt) =>
-            setState({
-              ...state,
-              rating: Number(evt.target.value)
-            })}
-          />
-          <label className="rating__label" htmlFor="star-9">Rating 9</label>
-
-          <input className="rating__input" id="star-8" type="radio" name="rating" value="8" checked={state.rating === 8} onChange={(evt) =>
-            setState({
-              ...state,
-              rating: Number(evt.target.value)
-            })}
-          />
-          <label className="rating__label" htmlFor="star-8">Rating 8</label>
-
-          <input className="rating__input" id="star-7" type="radio" name="rating" value="7" checked={state.rating === 7} onChange={(evt) =>
-            setState({
-              ...state,
-              rating: Number(evt.target.value)
-            })}
-          />
-          <label className="rating__label" htmlFor="star-7">Rating 7</label>
-
-          <input className="rating__input" id="star-6" type="radio" name="rating" value="6" checked={state.rating === 6} onChange={(evt) =>
-            setState({
-              ...state,
-              rating: Number(evt.target.value)
-            })}
-          />
-          <label className="rating__label" htmlFor="star-6">Rating 6</label>
-
-          <input className="rating__input" id="star-5" type="radio" name="rating" value="5" checked={state.rating === 5} onChange={(evt) =>
-            setState({
-              ...state,
-              rating: Number(evt.target.value)
-            })}
-          />
-          <label className="rating__label" htmlFor="star-5">Rating 5</label>
-
-          <input className="rating__input" id="star-4" type="radio" name="rating" value="4" checked={state.rating === 4} onChange={(evt) =>
-            setState({
-              ...state,
-              rating: Number(evt.target.value)
-            })}
-          />
-          <label className="rating__label" htmlFor="star-4">Rating 4</label>
-
-          <input className="rating__input" id="star-3" type="radio" name="rating" value="3" checked={state.rating === 3} onChange={(evt) =>
-            setState({
-              ...state,
-              rating: Number(evt.target.value)
-            })}
-          />
-          <label className="rating__label" htmlFor="star-3">Rating 3</label>
-
-          <input className="rating__input" id="star-2" type="radio" name="rating" value="2" checked={state.rating === 2} onChange={(evt) =>
-            setState({
-              ...state,
-              rating: Number(evt.target.value)
-            })}
-          />
-          <label className="rating__label" htmlFor="star-2">Rating 2</label>
-
-          <input className="rating__input" id="star-1" type="radio" name="rating" value="1" checked={state.rating === 1} onChange={(evt) =>
-            setState({
-              ...state,
-              rating: Number(evt.target.value)
-            })}
-          />
-          <label className="rating__label" htmlFor="star-1">Rating 1</label>
+          {Array.from({ length: 10 }, (_,index) => (
+            <RatingAddReview key={`star-${10 - index}`} state={state} onChange={handleOnChangeRating} index={index}/>
+          ))}
         </div>
       </div>
 
