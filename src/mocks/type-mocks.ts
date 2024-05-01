@@ -24,6 +24,20 @@ export type TypeMoviePage = {
   isFavorite: boolean;
 };
 
+export type TypeComment = {
+  id: string;
+  date: string;
+  user: string;
+  comment: string;
+  rating: number;
+}
+
+export type TypeReview = {
+  movieId: string;
+  comments: TypeComment[];
+}
+
+export type TypeReviews = TypeReview[]
 export type TypeMoviesCards = TypeMovieCard[];
 
 export type TypeMoviesPage = TypeMoviePage[];

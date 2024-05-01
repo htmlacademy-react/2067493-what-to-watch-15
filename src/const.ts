@@ -12,3 +12,8 @@ export enum AutorizationStatus {
   NoAuth = 'NO_AUTH',
 }
 
+export const formatDate = {
+  dataReview: 'MMMM DD, YYYY',
+  dataReviewDataTime: 'YYYY-MM-DD',
+  durationMovies: 'H[h] mm[m]'
+};
