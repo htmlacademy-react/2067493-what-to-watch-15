@@ -9,7 +9,6 @@ type TypePropsReviewsMoviePage = {
 
 export default function ComponentReviewsMoviePage({ movie, reviews }: TypePropsReviewsMoviePage): JSX.Element {
   const comments = reviews.find((item) => movie.id === item.movieId);
-  console.log(reviews)
   return (
     <div className="film-card__reviews film-card__row">
       {comments ?
