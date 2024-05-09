@@ -5,6 +5,7 @@ type TypePropsReviewComponent = {
   comment: TypeComment;
 }
 export default function ReviewComponent({comment}: TypePropsReviewComponent): JSX.Element {
+
   return (
     <div className="review">
       <blockquote className="review__quote">

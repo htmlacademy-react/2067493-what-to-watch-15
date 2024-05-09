@@ -15,6 +15,17 @@ type TypePropsMoviePage = {
   reviews: TypeReviews;
 }
 
+function componentMoviePage (state: string, movie:TypeMoviePage, reviews: TypeReviews) {
+  switch (state) {
+    case 'overview':
+      return <ComponentOverviewMoviePage movie={movie} />;
+    case 'details':
+      return <ComponentDetailsMoviePage movie={movie}/>;
+    case 'reviews':
+      return <ComponentReviewsMoviePage movie={movie} reviews={reviews}/>;
+  }
+}
+
 export default function MoviePage({ moviesPage, promoMovie, moviesCards, reviews }: TypePropsMoviePage): JSX.Element {
   const params = useParams();
   const movie = params.id === promoMovie.id ? promoMovie : moviesPage.find((movieItem) => movieItem.id === params.id);
@@ -22,15 +33,18 @@ export default function MoviePage({ moviesPage, promoMovie, moviesCards, reviews
   const [state, setState] = useState('overview');
   const classActive = 'film-nav__item--active';
 
+  function handleOnClick (evt: React.MouseEvent<HTMLAnchorElement>) {
+    evt.preventDefault();
+    const value = evt.currentTarget.dataset.value;
+    if(!value) {
+      return;
+    }
+    setState(value);
+  }
+
   if (!movie) {
     return <Page404 />;
   }
-
-  const componentMoviePage = {
-    overview: <ComponentOverviewMoviePage movie={movie} />,
-    details: <ComponentDetailsMoviePage movie={movie}/>,
-    reviews: <ComponentReviewsMoviePage movie={movie} reviews={reviews}/>
-  };
 
   return (
     <>
@@ -101,32 +115,21 @@ export default function MoviePage({ moviesPage, promoMovie, moviesCards, reviews
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className={`film-nav__item ${state === 'overview' ? classActive : ''}`}>
-                    <a href="#" className="film-nav__link" data-value="overview" onClick={(evt) => {
-                      evt.preventDefault();
-                      setState(evt.target.dataset.value);
-                    }}
-                    >Overview
+                    <a href="#" className="film-nav__link" data-value="overview" onClick={handleOnClick}>Overview
                     </a>
                   </li>
                   <li className={`film-nav__item ${state === 'details' ? classActive : ''}`}>
-                    <a href="#" className="film-nav__link" data-value="details" onClick={(evt) => {
-                      evt.preventDefault();
-                      setState(evt.target.dataset.value);
-                    }}
-                    > Details
+                    <a href="#" className="film-nav__link" data-value="details" onClick={handleOnClick}> Details
                     </a>
                   </li>
                   <li className={`film-nav__item ${state === 'reviews' ? classActive : ''}`}>
-                    <a href="#" className="film-nav__link" data-value="reviews" onClick={(evt) => {
-                      evt.preventDefault();
-                      setState(evt.target.dataset.value);
-                    }}
-                    >Reviews
+                    <a href="#" className="film-nav__link" data-value="reviews" onClick={handleOnClick}>Reviews
                     </a>
                   </li>
                 </ul>
               </nav>
-              {componentMoviePage[state]}
+
+              {componentMoviePage(state, movie, reviews)}
             </div>
           </div>
         </div>
