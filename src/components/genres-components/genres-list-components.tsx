@@ -1,7 +1,7 @@
 import GenresComponents from './genres-components';
 import { getGenres } from '../../mocks/utils-mocks';
 import { useAppDispatch, useAppSelector } from '../../utils';
-import { CHANGE_GENRE } from '../../store/actions/action';
+import { CHANGE_GENRE, GET_MOVIES_GENRE, RESET_RENDER_MOVIES_COUNT } from '../../store/actions/action';
 
 export default function GenresListComponents(): JSX.Element {
   const movies = useAppSelector((store) => store.movies);
@@ -18,6 +18,8 @@ export default function GenresListComponents(): JSX.Element {
     }
 
     dispatch(CHANGE_GENRE(value));
+    dispatch(GET_MOVIES_GENRE());
+    dispatch(RESET_RENDER_MOVIES_COUNT());
   };
 
   return (

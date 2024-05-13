@@ -4,16 +4,12 @@ import { Addresses } from '../../const';
 import { Link } from 'react-router-dom';
 import { TypeMoviePage } from '../../mocks/type-mocks';
 import GenresListComponents from '../genres-components/genres-list-components';
-import { useAppSelector } from '../../utils';
 
 type TypePropsMainPage = {
   promoMovie: TypeMoviePage;
 }
 
 export default function MainPage({promoMovie}: TypePropsMainPage): JSX.Element {
-  const genre = useAppSelector((store) => store.genre);
-  const movies = useAppSelector((store) => store.movies);
-  const genreMovies = genre === 'All genres' ? movies : movies.filter((movie) => movie.genre === genre);
   return (
     <>
       <section className="film-card">
@@ -52,7 +48,7 @@ export default function MainPage({promoMovie}: TypePropsMainPage): JSX.Element {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresListComponents/>
 
-          <ListMovies movies={genreMovies}/>
+          <ListMovies/>
         </section>
 
         <footer className="page-footer">

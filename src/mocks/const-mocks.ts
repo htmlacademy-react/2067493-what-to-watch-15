@@ -36,7 +36,7 @@ export const ACTORS: string[] = [
 
 export const GENRE: string[] = [
   'Comedy',
-  'Dtective',
+  'Detective',
   'Action',
   'Thriller',
   'Horror'
