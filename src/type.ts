@@ -1,3 +1,5 @@
+import { store } from './store/index';
+
 export type TypePromoMovie = {
   id: string;
   name: string;
@@ -5,3 +7,6 @@ export type TypePromoMovie = {
   data: number;
 };
 
+export type TypeState = ReturnType<typeof store.getState>;
+
+export type TypeAppDispatch = typeof store.dispatch;

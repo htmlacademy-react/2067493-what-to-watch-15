@@ -3,13 +3,13 @@ import { moviesCards } from '../../mocks/films';
 import { CHANGE_GENRE } from '../actions/action';
 
 const intialStore = {
-  genres: 'All genres',
+  genre: 'All genres',
   movies: moviesCards,
 };
 
 export const reducer = createReducer(intialStore, (builder) => {
   builder.addCase(CHANGE_GENRE, (state, action) => {
-    state.genres = action.payload;
+    state.genre = action.payload;
   });
 });
 
