@@ -13,7 +13,6 @@ import { moviesPage } from '../../mocks/films';
 
 type TypeAppProps = {
   promoMovie: TypeMoviePage;
-  movies: TypeMoviesCards;
   moviesFavorite:TypeMoviesCards;
   moviesPage: TypeMoviesPage;
   reviews: TypeReviews;
@@ -23,7 +22,7 @@ export default function App(props: TypeAppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={Addresses.Main} element={<MainPage promoMovie={props.promoMovie} movies={props.movies} />} />
+        <Route path={Addresses.Main} element={<MainPage promoMovie={props.promoMovie} />} />
         <Route path={Addresses.SignIn} element={<SingnInPage />} />
         <Route path={Addresses.MyList}
           element={
@@ -33,7 +32,7 @@ export default function App(props: TypeAppProps): JSX.Element {
           }
         />
         <Route path={Addresses.Film}>
-          <Route path=':id' element={<MoviePage promoMovie={props.promoMovie} moviesPage={props.moviesPage} moviesCards={props.movies} reviews={props.reviews}/>}>
+          <Route path=':id' element={<MoviePage promoMovie={props.promoMovie} moviesPage={props.moviesPage} reviews={props.reviews}/>}>
           </Route>
         </Route>
         <Route path={Addresses.Player} element={<PlayerPage promoMovie={props.promoMovie} moviesPage={moviesPage} />} />

@@ -1,17 +1,16 @@
 import { Addresses } from '../../const';
-import { TypeMoviesPage, TypeMoviePage, TypeMoviesCards, TypeReviews } from '../../mocks/type-mocks';
+import { TypeMoviesPage, TypeMoviePage, TypeReviews } from '../../mocks/type-mocks';
 import { useParams, Link } from 'react-router-dom';
 import Page404 from '../page404/page404';
-import ListMovies from '../list-movies/list-movies';
 import ComponentOverviewMoviePage from './components-movie-page/components-overview-movie-page/component-overview-movie-page';
 import ComponentDetailsMoviePage from './components-movie-page/components-details-movie-page/component-details-movie-page';
 import ComponentReviewsMoviePage from './components-movie-page/components-reviews-movie-page/component-reviews-movie-page';
+import ComponentsListMoreLikeThis from './components-movie-page/components-list-more-like-this/components-list-more-like-this';
 import { useState } from 'react';
 
 type TypePropsMoviePage = {
   promoMovie: TypeMoviePage;
   moviesPage: TypeMoviesPage;
-  moviesCards: TypeMoviesCards;
   reviews: TypeReviews;
 }
 
@@ -26,7 +25,7 @@ function componentMoviePage (state: string, movie:TypeMoviePage, reviews: TypeRe
   }
 }
 
-export default function MoviePage({ moviesPage, promoMovie, moviesCards, reviews }: TypePropsMoviePage): JSX.Element {
+export default function MoviePage({ moviesPage, promoMovie, reviews }: TypePropsMoviePage): JSX.Element {
   const params = useParams();
   const movie = params.id === promoMovie.id ? promoMovie : moviesPage.find((movieItem) => movieItem.id === params.id);
   const isFavorite: number = moviesPage.filter((item) => item.isFavorite).length;
@@ -140,7 +139,7 @@ export default function MoviePage({ moviesPage, promoMovie, moviesCards, reviews
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            {<ListMovies movies={moviesCards.filter((item) => item.genre === movie.genre && item.id !== movie.id).slice(0, 4)} />}
+            {<ComponentsListMoreLikeThis genre={movie.genre} />}
           </div>
         </section>
 

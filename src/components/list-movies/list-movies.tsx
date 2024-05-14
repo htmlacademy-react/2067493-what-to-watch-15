@@ -14,7 +14,7 @@ export default function ListMovies(): JSX.Element {
   const handleMouseOverCapture = (value: string): void => {
     setState(value);
   };
-  const handleClickMovies = (): void => {
+  const handleMouseOutMovies = (): void => {
     setState('');
   };
 
@@ -24,7 +24,7 @@ export default function ListMovies(): JSX.Element {
 
   return (
     <div className="catalog__films-list">
-      {movies.slice(0, moviesRenderCount).map((item) => <MovieCard key={item.id} movie={item} onMouseOverCapture={handleMouseOverCapture} onMouseOutCapture={handleClickMovies} movieIdPlaying={movieIdPlaying} />)}
+      {movies.slice(0, moviesRenderCount).map((item) => <MovieCard key={item.id} movie={item} onMouseOverCapture={handleMouseOverCapture} onMouseOutCapture={handleMouseOutMovies} movieIdPlaying={movieIdPlaying} />)}
       <ShowMoreButtonComponent moviesCount={moviesCount} renderMoviesCount={moviesRenderCount} onClick={handleClickShowMoreButton} />
     </div>
   );
