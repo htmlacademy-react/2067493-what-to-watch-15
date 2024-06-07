@@ -1,29 +1,13 @@
 import MainPage from '../main-page/main-page';
-import AddReviewPage from '../add-review-page/add-review-page';
-import MoviePage from '../movie-page/movie-page';
-import MyListPage from '../my-list-page/my-list-page';
-import SingnInPage from '../singn-in-page/singn-in-page';
-import PlayerPage from '../player-page/player-page';
 import Page404 from '../page404/page404';
-import PrivateRoute from '../private-route/private.route';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Addresses, AutorizationStatus } from '../../const';
-import { TypeMoviesCards, TypeMoviesPage, TypeMoviePage, TypeReviews } from '../../mocks/type-mocks';
-import { moviesPage } from '../../mocks/films';
-
-type TypeAppProps = {
-  promoMovie: TypeMoviePage;
-  moviesFavorite:TypeMoviesCards;
-  moviesPage: TypeMoviesPage;
-  reviews: TypeReviews;
-}
-
-export default function App(props: TypeAppProps): JSX.Element {
+import { Addresses } from '../../const';
+export default function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={Addresses.Main} element={<MainPage promoMovie={props.promoMovie} />} />
-        <Route path={Addresses.SignIn} element={<SingnInPage />} />
+        <Route path={Addresses.Main} element={<MainPage />} />
+        {/* <Route path={Addresses.SignIn} element={<SingnInPage />} />
         <Route path={Addresses.MyList}
           element={
             <PrivateRoute autorizationStatus={AutorizationStatus.Auth}>
@@ -42,8 +26,8 @@ export default function App(props: TypeAppProps): JSX.Element {
               <AddReviewPage movies={moviesPage}/>
             </PrivateRoute>
           }
-        />
-        <Route path='*' element={<Page404 />} />
+        /> */}
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,6 +1,6 @@
 import axios, {AxiosInstance} from 'axios';
 
-const BASE_URL = 'https://15.design.htmlacademy.pro/wwt';
+const BASE_URL = 'https://15.design.htmlacademy.pro/wtw';
 const TIMEOUT = 5000;
 
 export const createAPI = (): AxiosInstance => {

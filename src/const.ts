@@ -17,3 +17,7 @@ export const formatDate = {
   dataReviewDataTime: 'YYYY-MM-DD',
   durationMovies: 'H[h] mm[m]'
 };
+
+export enum ApiRoute {
+  FILMS = '/films'
+}
